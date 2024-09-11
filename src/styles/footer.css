@@ -1,0 +1,39 @@
+/* src/styles/footer.css */
+.footer {
+  background-color: #9c6a42;
+  padding: 40px 0;
+}
+
+.footer h5 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.footer p,
+.footer a {
+  font-size: 14px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer a:hover {
+  color: #f1c40f;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  font-size: 24px;
+}
+
+.social-icons a {
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #f1c40f;
+}

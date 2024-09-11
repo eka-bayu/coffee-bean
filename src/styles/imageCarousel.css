@@ -1,0 +1,21 @@
+/* src/styles/imageCarousel.css */
+.carousel-control-prev {
+  justify-content: left !important;
+  padding: 24px !important;
+}
+
+.carousel-control-next {
+  justify-content: right !important;
+  padding: 24px !important;
+}
+
+.carousel-button-container {
+  position: absolute;
+  bottom: 20px;
+  left: 32px;
+}
+
+.carousel-button-container .btn {
+  font-size: 18px;
+  padding: 10px 20px;
+}

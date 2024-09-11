@@ -1,12 +1,21 @@
 // src/App.js
 import React from "react";
-import LoginPage from "./pages/loginPage.jsx";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/loginPage";
+import HomePage from "./pages/homePage";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <LoginPage />
-    </div>
+    <Router>
+      <div className="App">
+        {/* Definisikan Routes */}
+        <Routes>
+          <Route path="/" element={<HomePage />} /> {/* Home Page */}
+          <Route path="/login" element={<LoginPage />} /> {/* Login Page */}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

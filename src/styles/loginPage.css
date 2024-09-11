@@ -1,4 +1,4 @@
-/* src/styles/LoginPage.css */
+/* src/styles/loginPage.css */
 .login-container {
   height: 100vh;
   display: grid;
@@ -8,7 +8,6 @@
 .login-form-col {
   position: relative;
   background-color: #f8f9fa;
-  padding: 20px;
   justify-content: center;
   align-items: center;
   display: flex;
