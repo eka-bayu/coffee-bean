@@ -69,7 +69,7 @@ function ImageCarousel() {
               width: "100%",
               height: "100%",
               background:
-                "linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1))",
+                "linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1))",
             }}
           />
           <Carousel.Caption

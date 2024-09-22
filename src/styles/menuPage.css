@@ -1,0 +1,90 @@
+.menu-page {
+  padding: 20px;
+}
+
+.menu-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-item {
+  border: 1px solid #ddd;
+  padding: 16px;
+  text-align: center;
+  width: 200px;
+  border-radius: 8px;
+}
+
+.menu-item img {
+  width: 100%;
+  height: auto;
+}
+
+.category-buttons {
+  margin-bottom: 16px;
+  width: auto;
+  gap: 8px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.category-buttons button {
+  margin-right: 8px;
+  padding: 4px 24px;
+  border-radius: 8px;
+  color: #9c6a42;
+  border: solid 0.5px #9c6a42 !important;
+}
+
+.category-buttons button:hover {
+  background-color: #9c6a42;
+  color: #ffffff;
+}
+
+.menu-list {
+  display: flex;
+  justify-content: flex-start;
+  width: 89%;
+  flex-direction: row;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.order-form {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 40%;
+  height: 10%;
+}
+
+.order-form h2 {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}

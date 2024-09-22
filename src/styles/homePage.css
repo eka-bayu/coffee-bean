@@ -20,6 +20,7 @@
   justify-content: center;
   gap: 8px;
   background-color: #ffeacf;
+  box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
 }
 
 .hero-content img {

@@ -1,4 +1,22 @@
 /* src/styles/navbar.css */
+.bg-body-tertiary {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 0 1rem !important;
+  z-index: 3 !important;
+}
+
+.nav-link {
+  color: #777777 !important;
+}
+
+.nav-link:hover {
+  color: #9c6a42 !important;
+}
+
+.dropdown-toggle {
+  align-items: center;
+}
+
 .custom-dropdown-button .btn-outline-secondary {
   transition: background-color 0.3s ease;
   color: #9c6a42;

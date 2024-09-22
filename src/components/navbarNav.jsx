@@ -1,21 +1,39 @@
+import React, { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import TrackOrder from "../components/trackOrder";
+import { Link } from "react-router-dom";
 import "../styles/navbar.css";
 
 function NavbarNav() {
+  const [isTrackOrderOpen, setIsTrackOrderOpen] = useState(false);
+
+  const openTrackOrder = () => {
+    setIsTrackOrderOpen(true);
+  };
+
+  const closeTrackOrder = () => {
+    setIsTrackOrderOpen(false);
+  };
+
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary mb-3" sticky="top">
+      <Navbar
+        expand="lg"
+        className="bg-body-tertiary mb-3 z-4"
+        sticky="top"
+        style={{ height: "64px" }}
+      >
         <Container fluid style={{ padding: "0" }}>
           <Navbar.Brand href="#">
             <img
               src="/images/logo.png"
-              height="54"
+              padding="8px"
+              height="48px"
               className="d-inline-block align-top"
               alt="Logo"
             />
@@ -34,23 +52,15 @@ function NavbarNav() {
                 className="justify-content-center flex-grow-1 pe-3"
                 style={{ gap: "6rem", fontSize: "18px" }}
               >
-                <Nav.Link href="#home">Home</Nav.Link>
-                <NavDropdown
-                  variant="outline-secondary"
-                  title="Menu"
-                  id="offcanvasNavbarDropdown"
-                  style={{ display: "flex", alignItems: "center" }}
-                >
-                  <NavDropdown.Item href="#action1">Coffee</NavDropdown.Item>
-                  <NavDropdown.Item href="#action2">
-                    Non-Coffee
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action3">
-                    Food & Baverages
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">Seasonal</NavDropdown.Item>
-                </NavDropdown>
-                <Nav.Link href="#trackOrder">Track Order</Nav.Link>
+                <Nav.Link as={Link} to="/">
+                  Home
+                </Nav.Link>
+                <Nav.Link as={Link} to="/menu">
+                  Menu
+                </Nav.Link>
+                <Nav.Link href="#trackOrder" onClick={openTrackOrder}>
+                  Track Order
+                </Nav.Link>
               </Nav>
               <div className="d-flex justify-content-end">
                 <DropdownButton
@@ -70,6 +80,7 @@ function NavbarNav() {
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
+      <TrackOrder isOpen={isTrackOrderOpen} onClose={closeTrackOrder} />
     </>
   );
 }
