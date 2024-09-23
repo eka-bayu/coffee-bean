@@ -7,17 +7,54 @@
   justify-content: space-between;
 }
 
+.menu-items {
+  width: 86%;
+}
+
 .menu-item {
   border: 1px solid #ddd;
   padding: 16px;
   text-align: center;
-  width: 200px;
+  width: 100%;
+  max-width: 210px;
+  height: auto;
+  aspect-ratio: 1 / 1;
   border-radius: 8px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  flex-grow: 1;
+}
+
+.menu-item h4,
+p {
+  margin-top: 16px;
+  text-align: left;
+}
+
+.menu-item h4 {
+  font-size: 16px;
+}
+
+.menu-item p {
+  font-size: 12px;
+  height: 32px;
+}
+
+.menu-item .price {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 0 !important;
 }
 
 .menu-item img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.menu-item btn-primary {
+  margin-top: 0 !important;
 }
 
 .category-buttons {
@@ -45,7 +82,7 @@
 .menu-list {
   display: flex;
   justify-content: flex-start;
-  width: 89%;
+  width: 96%;
   flex-direction: row;
   align-items: flex-start;
   align-content: flex-start;
@@ -64,15 +101,24 @@
 
 .order-form h2 {
   margin-bottom: 20px;
+  font-size: 24px;
 }
 
 .form-group {
   margin-bottom: 15px;
+  border-bottom: solid 0.5px #9c6a42;
+  padding-bottom: 4%;
 }
 
 .form-group label {
   display: block;
   margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.form-group btn-primary {
+  background-color: #9c6a42 !important;
+  border: solid 0.5px #d59d73;
 }
 
 .form-control {
@@ -86,5 +132,48 @@
   display: block;
   width: 100%;
   padding: 10px;
-  margin-top: 10px;
+}
+
+.chip {
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 25px;
+  background-color: #f1f1f1;
+  border: none;
+  cursor: pointer;
+}
+
+.chip.active {
+  background-color: #d59d73;
+  color: white;
+}
+
+.filter-chips {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.quantity {
+  font-weight: 600;
+}
+
+.quantity-control {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.quantity-control button {
+  width: 16%;
+  height: auto;
+}
+
+.btn-danger {
+  display: flex !important;
+  margin-left: 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #f1f1f1 !important;
 }

@@ -1,8 +1,16 @@
 import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "../styles/loginPage.css";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate("/");
+  };
+
   return (
     <Container fluid className="login-container">
       <Row className="h-200">
@@ -15,7 +23,7 @@ const LoginPage = () => {
             <p className="loginTxt">
               Please login first for your coffee experience
             </p>
-            <Form>
+            <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicEmail" className="mb-3">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Your email" />
@@ -30,7 +38,7 @@ const LoginPage = () => {
                   id="rememberMe"
                   label="Remember me"
                 />
-                <a href="#forgotPassword" className="text-decoration">
+                <a href="/login/forgotPassword" className="text-decoration">
                   Forgot password?
                 </a>
               </Form.Group>
@@ -55,6 +63,7 @@ const LoginPage = () => {
                   backgroundColor: "#ffffff",
                   borderColor: "#6e4635",
                 }}
+                onClick={() => navigate("/")}
               >
                 Login as Guest
               </Button>

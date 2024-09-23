@@ -96,7 +96,7 @@ function ImageCarousel() {
             }}
           >
             <a
-              href="#menu"
+              href="/menu"
               className="btn btn-primary"
               style={{
                 backgroundColor: "#9c6a42",

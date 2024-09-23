@@ -17,13 +17,18 @@
   align-items: center;
 }
 
-.custom-dropdown-button .btn-outline-secondary {
+.custom-dropdown-button .btn-outline-secondary::before {
   transition: background-color 0.3s ease;
   color: #9c6a42;
   width: auto;
 }
 
 .custom-dropdown-button .btn-outline-secondary:hover {
+  background-color: #9c6a42;
+  color: #fff;
+}
+
+#dropdown-basic-button ::after {
   background-color: #9c6a42;
   color: #fff;
 }

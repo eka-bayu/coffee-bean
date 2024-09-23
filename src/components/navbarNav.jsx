@@ -73,7 +73,7 @@ function NavbarNav() {
                 >
                   <Dropdown.Item href="#profile">Profile</Dropdown.Item>
                   <Dropdown.Divider />
-                  <Dropdown.Item href="#logout">Logout</Dropdown.Item>
+                  <Dropdown.Item href="/login">Logout</Dropdown.Item>
                 </DropdownButton>
               </div>
             </Offcanvas.Body>

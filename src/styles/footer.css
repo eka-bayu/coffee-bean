@@ -2,6 +2,7 @@
 .footer {
   background-color: #9c6a42;
   padding: 40px 0;
+  border-radius: 16px;
 }
 
 .footer h5 {
