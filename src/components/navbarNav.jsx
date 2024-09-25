@@ -6,11 +6,15 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import TrackOrder from "../components/trackOrder";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authContext";
 import "../styles/navbar.css";
 
 function NavbarNav() {
   const [isTrackOrderOpen, setIsTrackOrderOpen] = useState(false);
+  const auth = useAuth();
+  const { isLoggedIn = false, logout = () => {} } = auth || {};
+  const navigate = useNavigate();
 
   const openTrackOrder = () => {
     setIsTrackOrderOpen(true);
@@ -18,6 +22,11 @@ function NavbarNav() {
 
   const closeTrackOrder = () => {
     setIsTrackOrderOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
   };
 
   return (
@@ -62,19 +71,37 @@ function NavbarNav() {
                   Track Order
                 </Nav.Link>
               </Nav>
-              <div className="d-flex justify-content-end">
-                <DropdownButton
-                  id="dropdown-basic-button"
-                  className="custom-dropdown-button"
-                  title="Hi, Jaka Satria"
-                  variant="outline-secondary"
-                  align="end"
-                  style={{ fontSize: "18px" }}
-                >
-                  <Dropdown.Item href="#profile">Profile</Dropdown.Item>
-                  <Dropdown.Divider />
-                  <Dropdown.Item href="/login">Logout</Dropdown.Item>
-                </DropdownButton>
+              <div className="d-flex justify-content-end gap-4">
+                {!isLoggedIn ? (
+                  <>
+                    <Nav.Link
+                      as={Link}
+                      to="/login"
+                      className="login-btn"
+                      style={{ color: "#9c6a42 !important" }}
+                    >
+                      Login
+                    </Nav.Link>
+                    <Nav.Link as={Link} to="/signup" className="signup-btn">
+                      Sign Up
+                    </Nav.Link>
+                  </>
+                ) : (
+                  <DropdownButton
+                    id="dropdown-basic-button"
+                    className="custom-dropdown-button"
+                    title="Hi, User"
+                    variant="outline-secondary"
+                    align="end"
+                    style={{ fontSize: "18px" }}
+                  >
+                    <Dropdown.Item as={Link} to="/profile">
+                      Profile
+                    </Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                  </DropdownButton>
+                )}
               </div>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

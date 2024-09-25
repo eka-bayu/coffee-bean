@@ -63,6 +63,7 @@ a.text-decoration:hover {
 
 .btn-full-width {
   width: 100%;
+  margin-bottom: 0 !important;
 }
 
 .image-col {
@@ -89,7 +90,7 @@ a.text-decoration:hover {
   flex: 1;
 }
 
-.signup-container {
+.signup-container-main {
   display: flex;
   align-items: center;
   justify-content: center;

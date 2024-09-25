@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/navbarNav";
 import CustomerRating from "../components/customerRating";
-import ImageCarousel from "../components/imageCarousel"; // Import the image carousel
+import ImageCarousel from "../components/imageCarousel";
 import Footer from "../components/footer";
 import "../styles/homePage.css";
 

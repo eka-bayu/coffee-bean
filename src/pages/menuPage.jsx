@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Navbar from "../components/navbarNav";
 import MenuItem from "../components/menuItems";
 import menus from "../components/menus";
@@ -6,6 +8,7 @@ import "../styles/menuPage.css";
 
 const MenuPage = () => {
   const [order, setOrder] = useState({});
+  const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState("All");
 
   const addToOrder = (item) => {
@@ -28,9 +31,36 @@ const MenuPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Order placed:", order);
+  // };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Order placed:", order);
+    const now = new Date();
+    const orderId = `ORD-${now.getTime()}`;
+    const orderData = {
+      id: orderId,
+      date: now.toLocaleDateString(),
+      time: now.toLocaleTimeString(),
+      items: Object.entries(order).map(([name, { quantity, price }]) => ({
+        name,
+        quantity,
+        price,
+      })),
+      totalPrice: Object.entries(order).reduce(
+        (total, [_, { quantity, price }]) => total + quantity * price,
+        0
+      ),
+    };
+
+    try {
+      await axios.post("http://localhost:3001/api/order", orderData);
+      navigate(`/order/${orderId}`, { state: { orderData } });
+    } catch (error) {
+      console.error("Error placing order", error);
+    }
   };
 
   const removeFromOrder = (itemName) => {

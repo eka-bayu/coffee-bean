@@ -41,3 +41,15 @@
 .justify-content-center {
   gap: 1rem 6rem !important;
 }
+
+.d-flex {
+  align-items: center;
+  flex-direction: row;
+}
+
+.login-btn {
+  color: #9c6a42 !important;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+}

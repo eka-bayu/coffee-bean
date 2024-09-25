@@ -1,0 +1,70 @@
+/* src/styles/signPage.css */
+.signup-container {
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  margin-top: 0 !important;
+}
+
+.signup-form-col {
+  position: relative;
+  background-color: #f8f9fa;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.logo-wrapper {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.logo {
+  height: 54px;
+  width: auto;
+  margin: 4px 8px;
+}
+
+.signup-form-wrapper {
+  max-width: 1000px;
+  width: 50%;
+  margin-top: 1.5rem;
+}
+
+.form-control::placeholder {
+  color: #6c757d;
+  opacity: 4;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.image-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+.image-wrapper {
+  width: 100%;
+  height: 777px;
+  display: flex;
+}
+
+.image-wrapper img {
+  border-radius: 32px 0 0 32px;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  flex: 1;
+}
+
+.btn-full-width {
+  margin-top: 1rem;
+}

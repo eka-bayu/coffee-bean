@@ -4,7 +4,7 @@ const menus = [
     name: "Americano",
     description: "Espresso with hot water",
     price: 25000,
-    image: "https://via.placeholder.com/200x150?text=Americano",
+    image: `${process.env.PUBLIC_URL}/images/coffee-cup.png`,
     category: "Coffee",
     getFormattedPrice() {
       return `Rp. ${this.price.toLocaleString("id-ID")}`;
@@ -15,7 +15,7 @@ const menus = [
     name: "Latte",
     description: "Espresso with steamed milk",
     price: 30000,
-    image: "https://via.placeholder.com/200x150?text=Latte",
+    image: `${process.env.PUBLIC_URL}/images/coffee-cup.png`,
     category: "Coffee",
     getFormattedPrice() {
       return `Rp. ${this.price.toLocaleString("id-ID")}`;
@@ -26,7 +26,7 @@ const menus = [
     name: "Cappuccino",
     description: "Espresso with steamed milk foam",
     price: 30000,
-    image: "https://via.placeholder.com/200x150?text=Cappuccino",
+    image: `${process.env.PUBLIC_URL}/images/coffee-cup.png`,
     category: "Coffee",
     getFormattedPrice() {
       return `Rp. ${this.price.toLocaleString("id-ID")}`;
@@ -37,7 +37,7 @@ const menus = [
     name: "Espresso",
     description: "Strong black coffee",
     price: 20000,
-    image: "https://via.placeholder.com/200x150?text=Espresso",
+    image: `${process.env.PUBLIC_URL}/images/coffee-cup.png`,
     category: "Coffee",
     getFormattedPrice() {
       return `Rp. ${this.price.toLocaleString("id-ID")}`;
@@ -48,7 +48,7 @@ const menus = [
     name: "Mocha",
     description: "Espresso with chocolate and steamed milk",
     price: 35000,
-    image: "https://via.placeholder.com/200x150?text=Mocha",
+    image: `${process.env.PUBLIC_URL}/images/coffee-cup.png`,
     category: "Coffee",
     getFormattedPrice() {
       return `Rp. ${this.price.toLocaleString("id-ID")}`;
@@ -59,7 +59,7 @@ const menus = [
     name: "Cold Brew",
     description: "Slow-steeped, small-batch and smooth",
     price: 21000,
-    image: "https://via.placeholder.com/200x150?text=Cold+Brew",
+    image: `${process.env.PUBLIC_URL}/images/coffee-cup.png`,
     category: "Coffee",
     getFormattedPrice() {
       return `Rp. ${this.price.toLocaleString("id-ID")}`;
@@ -70,7 +70,7 @@ const menus = [
     name: "Green Tea Latte",
     description: "Matcha green tea with steamed milk",
     price: 30000,
-    image: "https://via.placeholder.com/200x150?text=Green+Tea+Latte",
+    image: `${process.env.PUBLIC_URL}/images/coffee-cup.png`,
     category: "Non-Coffee",
     getFormattedPrice() {
       return `Rp. ${this.price.toLocaleString("id-ID")}`;
@@ -81,7 +81,7 @@ const menus = [
     name: "Hot Chocolate",
     description: "Steamed milk with mocha-flavored syrup",
     price: 28000,
-    image: "https://via.placeholder.com/200x150?text=Hot+Chocolate",
+    image: `${process.env.PUBLIC_URL}/images/coffee-cup.png`,
     category: "Non-Coffee",
     getFormattedPrice() {
       return `Rp. ${this.price.toLocaleString("id-ID")}`;
@@ -92,7 +92,7 @@ const menus = [
     name: "Caramel Frappuccino",
     description: "Blended coffee with caramel syrup",
     price: 35000,
-    image: "https://via.placeholder.com/200x150?text=Caramel+Frappuccino",
+    image: `${process.env.PUBLIC_URL}/images/coffee-cup.png`,
     category: "Non-Coffee",
     getFormattedPrice() {
       return `Rp. ${this.price.toLocaleString("id-ID")}`;
@@ -103,7 +103,7 @@ const menus = [
     name: "Chicken Sandwich",
     description: "Grilled chicken with fresh veggies",
     price: 47000,
-    image: "https://via.placeholder.com/200x150?text=Chicken+Sandwich",
+    image: `${process.env.PUBLIC_URL}/images/hamburger.png`,
     category: "Food & Snack",
     getFormattedPrice() {
       return `Rp. ${this.price.toLocaleString("id-ID")}`;
@@ -114,7 +114,7 @@ const menus = [
     name: "Croissant",
     description: "Buttery and flaky croissant",
     price: 20000,
-    image: "https://via.placeholder.com/200x150?text=Croissant",
+    image: `${process.env.PUBLIC_URL}/images/pancake.png`,
     category: "Food & Snack",
     getFormattedPrice() {
       return `Rp. ${this.price.toLocaleString("id-ID")}`;
@@ -125,7 +125,7 @@ const menus = [
     name: "Muffin",
     description: "Blueberry muffin",
     price: 21000,
-    image: "https://via.placeholder.com/200x150?text=Muffin",
+    image: `${process.env.PUBLIC_URL}/images/pancake.png`,
     category: "Food & Snack",
     getFormattedPrice() {
       return `Rp. ${this.price.toLocaleString("id-ID")}`;
@@ -136,7 +136,7 @@ const menus = [
     name: "Peppermint Mocha",
     description: "Espresso with peppermint flavor and chocolate",
     price: 24000,
-    image: "https://via.placeholder.com/200x150?text=Peppermint+Mocha",
+    image: `${process.env.PUBLIC_URL}/images/coffee-cup.png`,
     category: "Seasonal",
     getFormattedPrice() {
       return `Rp. ${this.price.toLocaleString("id-ID")}`;
@@ -144,10 +144,10 @@ const menus = [
   },
   {
     id: 14,
-    name: "Seasonal Pumpkin Latte",
-    description: "Espresso with pumpkin spice flavor",
+    name: "Seasonal Lemon Latte",
+    description: "Espresso with lemon spice flavor",
     price: 27000,
-    image: "https://via.placeholder.com/200x150?text=Seasonal+Pumpkin+Latte",
+    image: `${process.env.PUBLIC_URL}/images/coffee-cup.png`,
     category: "Seasonal",
     getFormattedPrice() {
       return `Rp. ${this.price.toLocaleString("id-ID")}`;
@@ -158,7 +158,7 @@ const menus = [
     name: "Seasonal Apple Latte",
     description: "Espresso with apple spice flavor",
     price: 27000,
-    image: "https://via.placeholder.com/200x150?text=Seasonal+Apple+Latte",
+    image: `${process.env.PUBLIC_URL}/images/coffee-cup.png`,
     category: "Seasonal",
     getFormattedPrice() {
       return `Rp. ${this.price.toLocaleString("id-ID")}`;

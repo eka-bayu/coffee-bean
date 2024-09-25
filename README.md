@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,8 +69,20 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
+# This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
 # coffee-bean
+
 for project platinum challenge
->>>>>>> 880ef53cb9983f5e124fa63212921c6fcad179fa
+
+> > > > > > > 880ef53cb9983f5e124fa63212921c6fcad179fa
+
+# Account credentials
+
+Account details generated using Faker.js
+
+NB! these credentials are shown only once. If you do not write these down then you have to create a new account.
+
+Name: Beatrice Hammes
+Username: beatrice.hammes@ethereal.email
+Password: 4A3TN37zNCBv1Dpuym

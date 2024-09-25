@@ -1,3 +1,4 @@
+/* src/styles/trackOrder.css */
 .track-order {
   position: fixed;
   top: 0;
@@ -38,4 +39,20 @@
 .overlay.active {
   opacity: 1;
   pointer-events: auto;
+}
+
+.order-summary {
+  margin-top: 16px;
+}
+
+.order-summary h3 {
+  font-size: 24px;
+}
+
+.order-summary h4 {
+  font-size: 18px;
+}
+
+.order-summary .total-price {
+  font-weight: 600;
 }

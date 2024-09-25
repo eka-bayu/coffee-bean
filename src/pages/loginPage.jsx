@@ -1,14 +1,39 @@
-import React from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useAuth } from "../context/authContext";
 import "../styles/loginPage.css";
 
 const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+  const auth = useAuth();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    navigate("/");
+    try {
+      setError("");
+      const response = await axios.post(
+        "http://localhost:3001/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
+
+      const { token } = response.data;
+      localStorage.setItem("token", token);
+
+      auth.login(token);
+
+      navigate("/", { replace: true });
+    } catch (error) {
+      console.error("Login failed:", error);
+      setError("Invalid email or password. Please try again.");
+    }
   };
 
   return (
@@ -23,14 +48,28 @@ const LoginPage = () => {
             <p className="loginTxt">
               Please login first for your coffee experience
             </p>
+            {error && <Alert variant="danger">{error}</Alert>}{" "}
+            {/* Display error alert */}
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicEmail" className="mb-3">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Your email" />
+                <Form.Control
+                  type="email"
+                  placeholder="Your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)} // Update email state
+                  required
+                />
               </Form.Group>
               <Form.Group controlId="formBasicPassword" className="mb-3">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)} // Update password state
+                  required
+                />
               </Form.Group>
               <Form.Group className="mb-4 d-flex justify-content-between align-items-center">
                 <Form.Check
@@ -56,30 +95,28 @@ const LoginPage = () => {
               </Button>
               <Button
                 variant="primary"
-                type="submit"
+                type="button"
                 className="btn-full-width"
                 style={{
                   color: "#9c6a42",
                   backgroundColor: "#ffffff",
                   borderColor: "#6e4635",
                 }}
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/")} // Guest login button
               >
                 Login as Guest
               </Button>
-              <div className="signup-container">
+              <div className="signup-container-main">
                 <p style={{ marginTop: "none", marginBottom: "0" }}>
                   Don't have an account?
                 </p>
-                <a href="#signUp" className="text-decoration">
+                <a href="/login/signup" className="text-decoration">
                   Sign Up
                 </a>
               </div>
             </Form>
           </div>
         </Col>
-
-        {}
         <Col md={6} className="image-col">
           <div className="image-wrapper">
             <img
