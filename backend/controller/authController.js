@@ -1,17 +1,21 @@
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
-const User = require("../models/userModel");
-const { getUserByEmail } = require("../models/userModel");
+const bcrypt = require("bcrypt");
 const knex = require("knex")(require("../knexfile").development);
 
 const transporter = nodemailer.createTransport({
   host: "smtp.ethereal.email",
   port: 587,
   auth: {
-    user: "shanelle.balistreri18@ethereal.email",
-    pass: "nCkkhyBpqd26uGuTdk",
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
 });
+
+// Function to generate a random token for password reset
+const generateToken = () => {
+  return crypto.randomBytes(32).toString("hex");
+};
 
 const sendPasswordResetEmail = async (to, resetPasswordUrl) => {
   const mailOptions = {
@@ -26,43 +30,54 @@ const sendPasswordResetEmail = async (to, resetPasswordUrl) => {
   console.log(`Message sent: ${info.messageId}`);
 };
 
+// Forgot password function
 const forgotPassword = async (req, res) => {
   const { email } = req.body;
+  const token = generateToken();
+  const tokenExpiryDate = new Date(Date.now() + 3600000);
 
   try {
-    // Log the incoming email request
-    console.log("Forgot password request received for email:", email);
-
-    // Generate token and expiry time
-    const resetToken = crypto.randomBytes(32).toString("hex");
-    const tokenExpiry = Date.now() + 3600000; // Token valid for 1 hour
-
-    // Here you can log or store the resetToken and tokenExpiry in memory for later verification
-    console.log("Generated reset token:", resetToken);
-    console.log("Token expiry time:", new Date(tokenExpiry).toISOString());
-
-    // Send email with the reset token
-    const resetUrl = `http://localhost:3000/reset-password/${resetToken}`;
-    await transporter.sendMail({
-      from: '"Coffee Beans" <no-reply@coffeebeans.com>',
-      to: email,
-      subject: "Reset Password",
-      html: `<p>Click the link below to reset your password:</p><a href="${resetUrl}">Reset Password</a>
-      <p>with your token ${resetToken}</p>`,
+    // Store the reset token and expiry in the database
+    await knex("users").where("email", email).update({
+      reset_token: token,
+      token_expiry: tokenExpiryDate,
     });
 
-    res.status(200).json({ message: "Reset password email sent" });
+    console.log(`Reset token for user ${email}:`, token);
+
+    // Send email logic here
+    await sendPasswordResetEmail(
+      email,
+      `http://localhost:3000/reset-password/${token}`
+    );
+
+    res.status(200).json({ message: "Password reset email sent." });
   } catch (error) {
-    console.error("Error in forgotPassword:", error);
-    res.status(500).json({ message: "Internal server error" });
+    console.error("Error updating reset token:", error);
+    res.status(500).json({ message: "Internal server error." });
   }
 };
 
+// Inside getUserEmailByToken function
+const getUserEmailByToken = async (token) => {
+  console.log("Token received:", token);
+  try {
+    const user = await knex("users").where("reset_token", token).first();
+    if (!user) {
+      throw new Error("User not found or token invalid");
+    }
+    return user.email;
+  } catch (error) {
+    console.error("Error fetching user email:", error.message);
+    throw error;
+  }
+};
+
+// Reset password function
 const resetPassword = async (req, res) => {
   console.log("Request body:", req.body);
   const { email, token, newPassword } = req.body;
 
-  // Check if any of the values are undefined
   if (!email || !token || !newPassword) {
     return res
       .status(400)
@@ -70,19 +85,21 @@ const resetPassword = async (req, res) => {
   }
 
   try {
-    // Fetch the user by email
-    const user = await getUserByEmail(email);
+    // Fetch the user by email and reset token
+    const user = await knex("users")
+      .where({ email, reset_token: token })
+      .first();
+    console.log("Fetched user:", user);
 
     if (!user) {
-      return res.status(404).json({ message: "User not found." });
-    }
-
-    // Verify the reset token and expiry
-    if (user.reset_token !== token || user.token_expiry < Date.now()) {
       return res.status(400).json({ message: "Invalid or expired token." });
     }
 
-    // Hash the new password
+    // Check if the token has expired
+    if (user.token_expiry < Date.now()) {
+      return res.status(400).json({ message: "Token has expired." });
+    }
+
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
     // Update the user's password in the database
@@ -99,4 +116,9 @@ const resetPassword = async (req, res) => {
   }
 };
 
-module.exports = { forgotPassword, sendPasswordResetEmail, resetPassword };
+module.exports = {
+  forgotPassword,
+  sendPasswordResetEmail,
+  resetPassword,
+  getUserEmailByToken,
+};

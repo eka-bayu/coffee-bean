@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
+const knexConfig = require("./knexfile");
+const knex = require("knex")(knexConfig.development);
 const { createUser, getUserByEmail } = require("./models/userModel");
 const {
   forgotPassword,
@@ -18,6 +20,35 @@ require("dotenv").config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+const getUserEmailByToken = async (token) => {
+  console.log("Token received:", token);
+  if (!token) {
+    throw new Error("Token is required");
+  }
+
+  try {
+    const user = await knex("users").where("reset_token", token).first();
+    if (!user) {
+      throw new Error("User not found or token invalid");
+    }
+    return user.email;
+  } catch (error) {
+    console.error("Error fetching user email:", error.message);
+    throw error;
+  }
+};
+
+// Route for getting user email by token
+app.get("/api/auth/get-email/:token", async (req, res) => {
+  try {
+    const email = await getUserEmailByToken(req.params.token);
+    res.status(200).json({ email });
+  } catch (error) {
+    console.error("Error fetching user email:", error.message);
+    res.status(400).json({ message: error.message });
+  }
+});
 
 // Using routes for authentication
 app.use("/api/auth", authRoutes);
@@ -70,7 +101,7 @@ app.post("/api/auth/login", async (req, res) => {
 
     // Creating a JWT token
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "1h", // Tokens will expire in 1 hour
+      expiresIn: "1h",
     });
 
     // Return the token to the user

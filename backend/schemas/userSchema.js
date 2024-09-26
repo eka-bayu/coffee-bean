@@ -17,11 +17,12 @@ const userSchema = Joi.object({
     .min(8)
     .max(30)
     .required()
-    .pattern(
-      new RegExp(
-        "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$"
-      )
-    ), // Validate for strong password
+    .pattern(new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$"))
+    .messages({
+      "string.pattern.base":
+        "Password must contain at least one lowercase letter, one uppercase letter, and one number.",
+    }),
+  // Validate for strong password
 });
 
 export default userSchema;
